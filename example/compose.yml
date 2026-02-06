@@ -1,0 +1,18 @@
+---
+services:
+  vla_data_clean.ws:
+    tty: true
+    platform: linux/amd64
+    runtime: nvidia
+    network_mode: host
+    working_dir: /workspace
+    volumes:
+      - ".:/workspace/rl:rw"
+    command: bash
+    container_name: vla_base
+    environment:
+      NVIDIA_DRIVER_CAPABILITIES: all
+      NVIDIA_VISIBLE_DEVICES: all
+      DISPLAY: "${DISPLAY}"
+    image : "rl_base:v0.0.0"
+    shm_size: 16g
